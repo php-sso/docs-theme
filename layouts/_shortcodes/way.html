@@ -1,0 +1,4 @@
+{{- /* A coloured chip for one of the ways into php-sso: {{< way saml >}} or {{< way saml "SAML login" >}} */ -}}
+{{- $k := .Get 0 -}}
+{{- $labels := dict "password" "Password" "saml" "SAML" "social" "Social login" "scim" "SCIM" "oidc" "OpenID Connect" "core" "php-sso" -}}
+<span class="way way-{{ $k }}">{{ .Get 1 | default (index $labels $k) | default $k }}</span>

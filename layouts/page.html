@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="wrap docs">
+  {{ partial "sidebar.html" . }}
+  <main id="main" class="doc">
+    <header class="doc-head">
+      {{ with .Parent }}{{ if not .IsHome }}<p class="crumb">{{ .Title }}</p>{{ end }}{{ end }}
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.lead }}<p class="lead">{{ . }}</p>{{ end }}
+    </header>
+    <div class="prose">{{ .Content }}</div>
+    {{ partial "edit.html" . }}
+    {{ partial "pagenav.html" . }}
+  </main>
+  {{ if and (ne .Params.toc false) .TableOfContents (gt (len .Fragments.Headings) 0) }}
+  <aside class="toc" aria-label="On this page">
+    <h2>On this page</h2>
+    {{ .TableOfContents }}
+  </aside>
+  {{ end }}
+</div>
+{{ end }}

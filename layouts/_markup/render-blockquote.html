@@ -1,0 +1,9 @@
+{{- if eq .Type "alert" -}}
+{{- $labels := dict "note" "Note" "tip" "Tip" "important" "Important" "warning" "Warning" "caution" "Caution" -}}
+<div class="callout callout-{{ .AlertType }}" role="note">
+  <p class="callout-title">{{ index $labels .AlertType | default .AlertType }}{{ with .AlertTitle }}: {{ . }}{{ end }}</p>
+  {{ .Text }}
+</div>
+{{- else -}}
+<blockquote>{{ .Text }}</blockquote>
+{{- end -}}

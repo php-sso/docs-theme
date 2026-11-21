@@ -1,0 +1,14 @@
+{{- /* Recursive sidebar: pages and sections of a section, by weight. */ -}}
+{{- $current := .current -}}
+<ul>
+  {{- range .section.Pages.ByWeight -}}
+    {{- if .IsSection }}
+      <li class="group-title">
+        <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
+        {{ partial "nav.html" (dict "section" . "current" $current) }}
+      </li>
+    {{- else }}
+      <li><a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a></li>
+    {{- end }}
+  {{- end -}}
+</ul>

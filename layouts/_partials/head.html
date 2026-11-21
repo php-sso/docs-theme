@@ -1,0 +1,25 @@
+{{- $title := cond .IsHome site.Title (printf "%s · %s" .Title site.Title) -}}
+{{- $desc := .Description | default .Params.lead | default (cond .IsHome site.Params.description (.Summary | plainify | truncate 160)) -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+{{ with $desc }}<meta name="description" content="{{ . }}">{{ end }}
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="48x48">
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+<meta name="theme-color" content="#15123f" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1752" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ $title }}">
+{{ with $desc }}<meta property="og:description" content="{{ . }}">{{ end }}
+<meta property="og:url" content="{{ .Permalink }}">
+<meta name="twitter:card" content="summary">
+{{- $fonts := resources.Get "css/fonts.css" | resources.ExecuteAsTemplate "css/fonts.css" . -}}
+{{- $chroma := resources.Get "css/chroma.css" -}}
+{{- $docs := resources.Get "css/docs.css" -}}
+{{- $css := slice $fonts $docs $chroma | resources.Concat "css/docs.css" | minify | fingerprint -}}
+{{ with resources.Get "fonts/ibm-plex-sans-latin-400-normal.woff2" }}<link rel="preload" href="{{ .RelPermalink }}" as="font" type="font/woff2" crossorigin>{{ end }}
+{{ with resources.Get "fonts/ibm-plex-sans-condensed-latin-700-normal.woff2" }}<link rel="preload" href="{{ .RelPermalink }}" as="font" type="font/woff2" crossorigin>{{ end }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ partial "head-extra.html" . }}

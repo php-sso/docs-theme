@@ -1,0 +1,6 @@
+<footer>
+  <div class="wrap">
+    <span>{{ with site.Params.footer }}{{ . | markdownify }}{{ else }}{{ site.Title }}{{ end }}</span>
+    <span>{{ with site.Params.license }}{{ . }} licensed. {{ end }}<a href="https://php-sso.github.io/">php-sso.github.io</a></span>
+  </div>
+</footer>

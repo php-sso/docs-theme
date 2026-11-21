@@ -1,0 +1,6 @@
+{{ $f := dict "sans400" "ibm-plex-sans-latin-400-normal" "sans600" "ibm-plex-sans-latin-600-normal" "cond600" "ibm-plex-sans-condensed-latin-600-normal" "cond700" "ibm-plex-sans-condensed-latin-700-normal" "mono400" "ibm-plex-mono-latin-400-normal" -}}
+@font-face { font-family: "IBM Plex Sans"; font-weight: 400; font-style: normal; font-display: swap; src: url("{{ (resources.Get (printf "fonts/%s.woff2" $f.sans400)).RelPermalink }}") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-weight: 600; font-style: normal; font-display: swap; src: url("{{ (resources.Get (printf "fonts/%s.woff2" $f.sans600)).RelPermalink }}") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans Condensed"; font-weight: 600; font-style: normal; font-display: swap; src: url("{{ (resources.Get (printf "fonts/%s.woff2" $f.cond600)).RelPermalink }}") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans Condensed"; font-weight: 700; font-style: normal; font-display: swap; src: url("{{ (resources.Get (printf "fonts/%s.woff2" $f.cond700)).RelPermalink }}") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-style: normal; font-display: swap; src: url("{{ (resources.Get (printf "fonts/%s.woff2" $f.mono400)).RelPermalink }}") format("woff2"); }

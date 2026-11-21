@@ -1,0 +1,13 @@
+# Hugo only merges `params` and the module settings from a theme, so only those live here.
+# The other settings a site needs are in exampleSite/hugo.toml (copy them into your own hugo.toml).
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.158.0"
+
+[params]
+  accent = "core"   # core | password | saml | social | scim | oidc
+  # logo = "img/logo.svg"
+  # repo = "https://github.com/php-sso/oauth-server"
+  # branch = "master"
+  # editPath = "docs"

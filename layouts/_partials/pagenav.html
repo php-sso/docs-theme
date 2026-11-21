@@ -1,0 +1,6 @@
+{{- with or .PrevInSection .NextInSection }}
+<nav class="pagenav" aria-label="Previous and next page">
+  {{ with $.PrevInSection }}<a class="prev" href="{{ .RelPermalink }}"><small>Previous</small><span>{{ .LinkTitle }}</span></a>{{ else }}<span></span>{{ end }}
+  {{ with $.NextInSection }}<a class="next" href="{{ .RelPermalink }}"><small>Next</small><span>{{ .LinkTitle }}</span></a>{{ end }}
+</nav>
+{{- end }}

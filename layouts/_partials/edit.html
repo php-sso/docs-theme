@@ -1,0 +1,3 @@
+{{- with site.Params.repo }}{{ with $.File }}
+<p class="edit"><a href="{{ $.Site.Params.repo }}/edit/{{ $.Site.Params.branch | default "master" }}/{{ $.Site.Params.editPath | default "docs" }}/content/{{ .Path | replaceRE `\\` "/" }}">Edit this page on GitHub</a></p>
+{{- end }}{{ end }}

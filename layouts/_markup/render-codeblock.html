@@ -1,0 +1,4 @@
+{{- /* The language label and the copy button are added by docs.js, so they stay out of the search index. */ -}}
+<div class="code" data-lang="{{ cond (eq .Type "text") "" .Type }}">
+  {{ with transform.HighlightCodeBlock . "noClasses=false" }}{{ .Wrapped }}{{ end }}
+</div>
