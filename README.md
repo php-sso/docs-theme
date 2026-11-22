@@ -104,7 +104,7 @@ hugo server
 ```
 
 Keep the look in step with the website: when `assets/site.css` there changes colours or type, change the variables here.
-Fonts are IBM Plex under the SIL Open Font License (`assets/fonts/OFL.txt`).
+Fonts are IBM Plex (headings, interface, code) and Source Serif 4 (body text), both under the SIL Open Font License (`assets/fonts/OFL.txt`).
 
 ## License
 

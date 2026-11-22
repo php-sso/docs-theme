@@ -1,3 +1,5 @@
+Source Serif 4 (source-serif-4-*.woff2): Copyright 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'. Same license as below.
+
 Copyright 2019 IBM Corp. All rights reserved. IBMPlexSans-Italic[wdth,wght].ttf: Copyright 2019 IBM Corp. All rights reserved.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.

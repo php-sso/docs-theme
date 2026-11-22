@@ -1,6 +1,35 @@
-<footer>
-  <div class="wrap">
+{{- $page := . -}}
+{{- $logo := resources.Get (site.Params.logo | default "img/logo.svg") -}}
+<footer class="foot on-night">
+  <div class="wrap foot-grid">
+    <div class="foot-about">
+      <a class="brand" href="{{ "" | relURL }}">
+        {{ with $logo }}<img src="{{ .RelPermalink }}" alt="php-sso" height="32">{{ end }}
+        <span class="brand-name">{{ site.Title }}</span>
+      </a>
+      {{ with site.Params.description }}<p>{{ . }}</p>{{ end }}
+    </div>
+    <nav class="foot-col" aria-label="Documentation">
+      <h2>Documentation</h2>
+      <ul>
+        {{ range site.Home.Pages.ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+      </ul>
+    </nav>
+    <nav class="foot-col" aria-label="Project">
+      <h2>Project</h2>
+      <ul>
+        {{ with site.Params.repo }}
+        <li><a href="{{ . }}">Source on GitHub</a></li>
+        <li><a href="{{ . }}/issues">Report a problem</a></li>
+        {{ end }}
+        {{ range site.Params.footerLinks }}<li><a href="{{ .url }}">{{ .name }}</a></li>{{ end }}
+        <li><a href="https://php-sso.github.io/">php-sso.github.io</a></li>
+      </ul>
+      {{ partial "edit.html" $page }}
+    </nav>
+  </div>
+  <div class="wrap foot-base">
     <span>{{ with site.Params.footer }}{{ . | markdownify }}{{ else }}{{ site.Title }}{{ end }}</span>
-    <span>{{ with site.Params.license }}{{ . }} licensed. {{ end }}<a href="https://php-sso.github.io/">php-sso.github.io</a></span>
+    <span>{{ with site.Params.license }}{{ . }} licensed.{{ end }}</span>
   </div>
 </footer>

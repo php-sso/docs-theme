@@ -8,7 +8,6 @@
       {{ with .Params.lead }}<p class="lead">{{ . }}</p>{{ end }}
     </header>
     <div class="prose">{{ .Content }}</div>
-    {{ partial "edit.html" . }}
     {{ partial "pagenav.html" . }}
   </main>
   {{ if and (ne .Params.toc false) .TableOfContents (gt (len .Fragments.Headings) 0) }}
