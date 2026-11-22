@@ -12,7 +12,15 @@
     <nav class="foot-col" aria-label="Documentation">
       <h2>Documentation</h2>
       <ul>
-        {{ range site.Home.Pages.ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+        {{- /* With groups: one link per group, to its first page. Without: the top level pages. */ -}}
+        {{ $names := slice }}
+        {{ range site.Home.Pages.ByWeight }}{{ with .Params.group }}{{ if not (in $names .) }}{{ $names = $names | append . }}{{ end }}{{ end }}{{ end }}
+        {{ if $names }}
+          {{ range where site.Home.Pages.ByWeight "Params.group" "eq" nil }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+          {{ range $name := $names }}{{ with index (where site.Home.Pages.ByWeight "Params.group" "eq" $name) 0 }}<li><a href="{{ .RelPermalink }}">{{ $name }}</a></li>{{ end }}{{ end }}
+        {{ else }}
+          {{ range site.Home.Pages.ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+        {{ end }}
       </ul>
     </nav>
     <nav class="foot-col" aria-label="Project">
