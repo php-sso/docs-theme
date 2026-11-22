@@ -148,14 +148,20 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; line-height: 1.1
 body:has(.docs) :is(.top, footer) .wrap { width: auto; margin-inline: 0; padding-inline: var(--gutter); }
 .docs { flex: 1; width: auto; margin-inline: 0; display: grid; gap: 1.5rem 3rem; padding: 2rem var(--gutter) 4rem; align-items: start; }
 @media (min-width: 60rem) { .docs { grid-template-columns: 17rem minmax(0, 1fr); padding: 0 var(--gutter) 0 0; gap: 0 3rem; } }
-@media (min-width: 78rem) { .docs:has(.toc) { grid-template-columns: 17rem minmax(0, 1fr) 14rem; } }
+/* Wide screens: the text stays against the sidebar and "On this page" follows right after it, so spare room falls at the far right. */
+@media (min-width: 78rem) {
+  :root { --side: 17rem; --tocw: 14rem; --docs-width: calc(var(--side) + var(--measure) + var(--tocw) + 6rem); }
+  .docs { grid-template-columns: var(--side) minmax(0, var(--measure)) var(--tocw); justify-content: start; column-gap: 3rem; }
+  /* The top bar ends where "On this page" ends, so its search and links line up with it. */
+  body:has(.docs) .top .wrap { max-width: calc(var(--docs-width) + var(--gutter)); }
+}
+@media (min-width: 100rem) { :root { --side: 19rem; --tocw: 16rem; } }
 .sidebar { font-size: 0.97rem; }
 @media (min-width: 60rem) {
   .sidebar { align-self: stretch; padding: 2rem 1rem 2rem var(--gutter); background: var(--surface); border-right: 1px solid var(--line); }
   .side-details { position: sticky; top: 1.5rem; max-height: calc(100vh - 3rem); overflow: auto; scrollbar-width: thin; }
   .doc, .toc { margin-block: 2rem 4rem; }
 }
-@media (min-width: 100rem) { .docs { grid-template-columns: 19rem minmax(0, 1fr) 16rem; } .docs:not(:has(.toc)) { grid-template-columns: 19rem minmax(0, 1fr); } }
 .side-details > summary { font: 700 0.8rem/1 var(--sans); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); cursor: pointer; padding: 0.4rem 0 0.8rem; }
 @media (min-width: 60rem) { .side-details > summary { pointer-events: none; list-style: none; } .side-details > summary::-webkit-details-marker { display: none; } }
 .sidebar ul { list-style: none; margin: 0; padding: 0; }
