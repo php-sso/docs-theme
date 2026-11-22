@@ -1,6 +1,9 @@
-{{- with or .PrevInSection .NextInSection }}
+{{- /* Pages are ordered by weight, matching the sidebar: PrevInSection is the page above this one, NextInSection the page below. */ -}}
+{{- $prev := .PrevInSection -}}
+{{- $next := .NextInSection -}}
+{{- if or $prev $next }}
 <nav class="pagenav" aria-label="Previous and next page">
-  {{ with $.PrevInSection }}<a class="prev" href="{{ .RelPermalink }}"><small>Previous</small><span>{{ .LinkTitle }}</span></a>{{ else }}<span></span>{{ end }}
-  {{ with $.NextInSection }}<a class="next" href="{{ .RelPermalink }}"><small>Next</small><span>{{ .LinkTitle }}</span></a>{{ end }}
+  {{ with $prev }}<a class="prev" href="{{ .RelPermalink }}"><small>Previous</small><span>{{ .LinkTitle }}</span></a>{{ else }}<span></span>{{ end }}
+  {{ with $next }}<a class="next" href="{{ .RelPermalink }}"><small>Next</small><span>{{ .LinkTitle }}</span></a>{{ end }}
 </nav>
 {{- end }}
