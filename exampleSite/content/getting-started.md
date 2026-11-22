@@ -2,6 +2,7 @@
 title: Getting started
 weight: 1
 lead: Install it, run it, and see the pieces of the theme.
+group: Start here
 ---
 
 ## Install

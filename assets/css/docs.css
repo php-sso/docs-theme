@@ -171,6 +171,8 @@ body:has(.docs) :is(.top, footer) .wrap { width: auto; margin-inline: 0; padding
 .sidebar a:hover { background: var(--wash); }
 .sidebar a[aria-current="page"] { border-left-color: var(--accent); background: var(--wash); font-weight: 600; }
 .sidebar .group-title > a { font-weight: 600; }
+.sidebar .group-title.is-closed > a::after { content: "\203A"; float: right; color: var(--muted); font-weight: 400; }
+.side-heading { font: 700 0.8rem/1 var(--sans); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 1.6rem 0 0.5rem; padding-left: 0.7rem; }
 
 .doc { min-width: 0; max-width: var(--measure); }
 @media (min-width: 60rem) { .doc { padding-left: 0; } }

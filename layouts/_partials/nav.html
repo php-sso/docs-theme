@@ -1,14 +1,21 @@
-{{- /* Recursive sidebar: pages and sections of a section, by weight. */ -}}
+{{- /* Sidebar list: the pages and sections of a section, by weight.
+       With a "group" the list holds only the pages whose front matter has that group (nil for pages without one).
+       A section shows its own pages only while you are in it, so the list stays short. */ -}}
 {{- $current := .current -}}
+{{- $pages := .section.Pages.ByWeight -}}
+{{- if .grouped }}{{ $pages = where $pages "Params.group" "eq" .group }}{{ end -}}
+{{- if $pages -}}
 <ul>
-  {{- range .section.Pages.ByWeight -}}
+  {{- range $pages -}}
     {{- if .IsSection }}
-      <li class="group-title">
+      {{- $open := or (eq . $current) ($current.IsDescendant .) }}
+      <li class="group-title{{ if not $open }} is-closed{{ end }}">
         <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
-        {{ partial "nav.html" (dict "section" . "current" $current) }}
+        {{ if $open }}{{ partial "nav.html" (dict "section" . "current" $current) }}{{ end }}
       </li>
     {{- else }}
       <li><a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a></li>
     {{- end }}
   {{- end -}}
 </ul>
+{{- end -}}

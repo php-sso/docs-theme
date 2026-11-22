@@ -1,8 +1,20 @@
+{{- /* Top level pages can name a group in their front matter (group: "Get started").
+       Groups appear in the order their first page comes by weight; pages without a group come first, with no heading. */ -}}
+{{- $names := slice -}}
+{{- range site.Home.Pages.ByWeight }}{{ with .Params.group }}{{ if not (in $names .) }}{{ $names = $names | append . }}{{ end }}{{ end }}{{ end -}}
 <aside class="sidebar">
   <details class="side-details" open>
     <summary>Documentation</summary>
     <nav aria-label="Documentation">
-      {{ partial "nav.html" (dict "section" site.Home "current" .) }}
+      {{ if $names }}
+        {{ partial "nav.html" (dict "section" site.Home "current" . "grouped" true "group" nil) }}
+        {{ range $names }}
+          <h2 class="side-heading">{{ . }}</h2>
+          {{ partial "nav.html" (dict "section" site.Home "current" $ "grouped" true "group" .) }}
+        {{ end }}
+      {{ else }}
+        {{ partial "nav.html" (dict "section" site.Home "current" .) }}
+      {{ end }}
     </nav>
   </details>
 </aside>
