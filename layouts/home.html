@@ -4,7 +4,7 @@
     <div class="wrap">
       <h1>{{ .Title }}</h1>
       {{ with .Params.lead | default site.Params.description }}<p class="lead">{{ . }}</p>{{ end }}
-      {{ with .Params.actions }}<div class="actions">{{ range . }}<a class="btn" href="{{ .url | relURL }}">{{ .name }}</a>{{ end }}</div>{{ end }}
+      {{ with .Params.actions }}<div class="actions">{{ range . }}<a class="btn" href="{{ strings.TrimPrefix "/" .url | relURL }}">{{ .name }}</a>{{ end }}</div>{{ end }}
     </div>
   </section>
   <div class="wrap home-body">

@@ -21,7 +21,7 @@ disableKinds = ["taxonomy", "term", "RSS"]
 
   [[params.nav]]
     name = "Guides"
-    url = "/guides/"
+    url = "guides/"
 
 [module]
   # Remove this line in a real repository: it makes the example use the theme from this checkout.
